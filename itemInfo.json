@@ -1,0 +1,39 @@
+{
+    "items": [
+        {
+            "title": "法定代表",
+            "xpath": "//*[@id=\"_container_baseInfo\"]/table[1]/tbody/tr[1]/td[1]/div/div[1]/div[2]/div[1]/a/text()",
+            "value": ""
+        },
+        {
+            "title": "公司名称",
+            "xpath": "//*[@id=\"company_web_top\"]/div[2]/div[2]/div[1]/h1/text()",
+            "value": ""
+        },
+        {
+            "title": "注册资本",
+            "xpath": "//*[@id=\"_container_baseInfo\"]/table[1]/tbody/tr[1]/td[2]/div[2]/@title",
+            "value": ""
+        },
+        {
+            "title": "详细地址",
+            "xpath": "//*[@id=\"company_web_top\"]/div[2]/div[2]/div[5]/div[2]/div[2]/span[2]/@title",
+            "value": ""
+        },
+        {
+            "title": "注册时间",
+            "xpath": "//*[@id=\"_container_baseInfo\"]/table[1]/tbody/tr[2]/td/div[2]/text/text()",
+            "value": ""
+        },
+        {
+            "title": "统一社会信用代码",
+            "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[2]/td[2]/text()",
+            "value": ""
+        },
+        {
+            "title": "",
+            "xpath": "",
+            "value": ""
+        }
+    ]
+}
