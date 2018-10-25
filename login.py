@@ -7,12 +7,18 @@ from PyQt5.QtCore import QUrl
 
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile
 
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton
+from PyQt5.QtWidgets import QApplication,QListWidgetItem, QWidget, QVBoxLayout, QPushButton,QListWidget
 
 import pa
 
- 
-
+companyList=[]
+with open('company.list') as f:
+    while 1:
+        line = f.readline()
+        if not line:
+            break
+        companyList.append(line.strip().strip('\t\n'))
+print(companyList)
 # 先来个窗口
 
 class Loginwindow(QWidget):
@@ -26,26 +32,40 @@ class Loginwindow(QWidget):
         self.btn_get.clicked.connect(self.get_cookie)     # 绑定按钮点击事件
         self.btn_search=QPushButton('search')
         self.btn_search.clicked.connect(self.btn_search_onClick)     # 绑定按钮点击事件
+
+        self.listWidget = QListWidget(self)
+        for i in companyList:
+            item = QListWidgetItem()
+            item.setText(i)
+            #item.setData(QtCore.Qt.UserRole, i[1])
+            self.listWidget.addItem(item)
+
         self.web = MyWebEngineView()                      # 创建浏览器组件对象
         self.web.resize(800, 600)                         # 设置大小
         self.web.load(QUrl("https://www.tianyancha.com/login"))  # 打开百度页面来测试
         self.box.addWidget(self.btn_get)                  # 将组件放到布局内，先在顶部放一个按钮
         self.box.addWidget(self.btn_search)                  # 将组件放到布局内，先在顶部放一个按钮
+        #self.box.addWidget(self.listWidget)
         self.box.addWidget(self.web)                      # 再放浏览器
         self.web.show()                                   # 最后让页面显示出来 
 
     def get_cookie(self):
         cookie = self.web.get_cookie()
         print('获取到cookie: ', cookie)
+
         
         
-    
+        
+    def gotoSearch(self,companyName):
+        print(companyName)
+        self.web.searchX(QUrl('https://www.tianyancha.com/search?key='+companyName))
+        
     def btn_search_onClick(self):
         print("search") 
         #pa.getContent('https://www.tianyancha.com/company/21475430',self.web.get_cookie())
         #self.web.loadX(QUrl('https://www.tianyancha.com/company/21475430'))
-        self.web.loadX(QUrl('https://www.tianyancha.com/company/2807842615'))
-        
+        #self.web.loadX(QUrl('https://www.tianyancha.com/company/2807842615'))
+        self.gotoSearch(companyList[1])
 
 # 创建自己的浏览器控件，继承自QWebEngineView
 class MyWebEngineView(QWebEngineView):
@@ -57,7 +77,14 @@ class MyWebEngineView(QWebEngineView):
         self.cookies = {}          # 存放cookie字典 
         self.loadFinished.connect(self._loadFinished)
         self.Xmode=False
+        self.searchMode = False
         
+    def searchX(self,url):
+        print(url)
+        self.searchMode = True
+        self.Xmode=True
+        self.load(QUrl(url))
+
     def loadX(self,url):
         self.Xmode=True
         self.load(QUrl(url))
@@ -82,7 +109,14 @@ class MyWebEngineView(QWebEngineView):
 
     def callable(self,data):
         self.html = data
-        pa.getContent(data)
+        print("search",self.searchMode)
+
+        if self.searchMode:
+            self.searchMode =False
+            self.Xmode = False
+            self.loadX(QUrl(pa.getSearchMode(data)))
+        else:
+            pa.getContent(data)
 
 
 if __name__ == "__main__":
