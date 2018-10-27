@@ -1,18 +1,14 @@
 #-*-coding:utf-8-*- #编码声明，不要忘记！
 import sys
 import json
- 
 import time
 from PyQt5.QtCore import QUrl,QTimer
-
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile
-
 from PyQt5.QtWidgets import QApplication,QListWidgetItem, QWidget, QVBoxLayout, QPushButton,QListWidget
-
 import pa
 
 companyList=[]
-with open('company.list') as f:
+with open('company.list','r',encoding='utf-8') as f:
     while 1:
         line = f.readline()
         if not line:
