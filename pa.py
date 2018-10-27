@@ -4,6 +4,7 @@ from lxml import html    #这里我们用lxml，也就是xpath的方法
 import json
 import numpy as np
 xItemList=[]
+g_debug=False
 with open('itemInfo.json',"r",encoding='utf-8') as fjson:
     y = json.load(fjson)   
     xItemList = np.array(y['items'])    
@@ -36,7 +37,8 @@ def getContent(text,date):
     for a in xItemList:
         if len(a['title']) <1:
             continue
-        #print(f"{a['title']} \t>>>\t {a['xpath']}")
+        if g_debug:
+            print(f"{a['title']} \t>>>\t {a['xpath']}")
         if a['title']=='x时间x':
             result +=date
         elif a['title']=='曾用名':
@@ -53,8 +55,8 @@ def getContent(text,date):
                 #print(a['xpath'])
                 #for v in value:
                 #    print(v)
-
-                #print(f"{a['title']} \t>>>\t {value}")
+                if g_debug:
+                    print(f"{a['title']} \t>>>\t {value}")
                 #result[a['title']]=a['value']
                 for x in value:
                     result+=x+"_"
@@ -82,16 +84,18 @@ def getContentbyURL(url,raw_cookies):
     #print(page.text)
     getContent(page.text,"1923-9-9")
 
+def testGetContentX(htmlUrl):
+    print("----"*20)
+    with open(htmlUrl,"r",encoding='utf-8') as f:
+        text = f.read()
+        print(getContent(text,'1892-2-3'))
+        f.close()
+
 def testGetContent():
     htmlArr=["大连奥格窗业有限公司.html","深商科技.html","mafengwo.html"]
     htmlArr=['沈阳繁荣金晨标识标牌有限公司.html']
     for a in htmlArr:
-        print("----"*20)
-        with open(a,"r",encoding='utf-8') as f:
-            text = f.read()
-            print(getContent(text,'1892-2-3'))
-            f.close()
-
+        testGetContentX(a)        
 def testGetSearch():
     with open('search.html','r',encoding='utf-8') as f:
         getSearchMode(f.read())
@@ -102,5 +106,6 @@ if __name__ == "__main__":
     raw_cookies='BAIDUID=03D092E5EE025A3FDBED7117A060E281:FG=1;BIDUPSID=03D092E5EE025A3FDBED7117A060E281;PSTM=1540264574;HMACCOUNT=7ACA8249760B55A2;BD_UPN=12314753;TYCID=e136a230d67211e8a0e2d57a3724c6fe;undefined=e136a230d67211e8a0e2d57a3724c6fe;ssuid=7594491667;_ga=GA1.2.1427534363.1540264953;_gid=GA1.2.1598589380.1540264953;_gat_gtag_UA_123487620_1=1;Hm_lvt_e92c8d65d92d534b0fc290df538b4758=1540264696,1540264914,1540264953,1540265017;aliyungf_tc=AQAAAIx9KABa/AMAg/nT3leXYZrCe7xV;csrfToken=cjcWC8O7_qL4_DQK4EvcYUgl;HMVT=e92c8d65d92d534b0fc290df538b4758|1540265017|;Hm_lpvt_e92c8d65d92d534b0fc290df538b4758=1540265017;'
     #getContentbyURL('https://www.tianyancha.com/company/21475430',raw_cookies)
     #testGetSearch()
-    testGetContent()
-    
+    #testGetContent()  
+    g_debug = True
+    testGetContentX("save.html")

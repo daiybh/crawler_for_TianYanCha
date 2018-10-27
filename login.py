@@ -42,6 +42,9 @@ class Loginwindow(QWidget):
 
     def setup(self):
 
+        self.timer=QTimer(self)
+        self.timer.timeout.connect(self.timercallback) #计时结束调用operate()方法
+        
         self.box = QVBoxLayout(self)                      # 创建一个垂直布局来放控件
         self.btn_get = QPushButton('点击获取cookies')   # 创建一个按钮涌来了点击获取cookie
         self.btn_get.clicked.connect(self.get_cookie)     # 绑定按钮点击事件
@@ -60,6 +63,11 @@ class Loginwindow(QWidget):
         self.box.addWidget(self.btn_search)                  # 将组件放到布局内，先在顶部放一个按钮
         self.box.addWidget(self.web)                      # 再放浏览器
         self.web.show()                                   # 最后让页面显示出来 
+
+    def timercallback(self):
+        
+        self.timer.stop()
+        self.onDoSearch()
 
     def get_cookie(self):
         #cookie = self.web.get_cookie()
@@ -94,8 +102,9 @@ class Loginwindow(QWidget):
         #print("anlyze_finish")
         #print(pResult)
         if pResult=='天眼查校验':
-            time.sleep(20)
-            self.onDoSearch()
+            #time.sleep(20)
+            #self.onDoSearch()
+            self.timer.start(2000) #设置计时间隔并启动
             return
         
         self.fw.write("\n"+companyList[self.searchIdx]+",")
