@@ -51,11 +51,11 @@
         {    "title": "备注",         "xpath": "",            "value": ""        },
         
 
+        {   "title": "实际控制人","xpath": "","value": ""},
 
-        {
-            "title": "x时间x",
-            "xpath": "",
-            "value": ""
-        }
+        {   "title": "最终受益人","xpath": "//*[@id=\"_container_humanholding\"]/table/tbody/tr[*]/td[2]/span/a/text()","value": ""},
+    
+
+        {   "title": "x时间x","xpath": "","value": ""}
     ]
 }
