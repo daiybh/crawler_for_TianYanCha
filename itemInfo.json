@@ -1,11 +1,6 @@
 {
     "items": [
         {
-            "title": "法定代表",
-            "xpath": "//*[@id=\"_container_baseInfo\"]/table[1]/tbody/tr[1]/td[1]/div/div[1]/div[2]/div[1]/a/text()",
-            "value": ""
-        },
-        {
             "title": "公司名称",
             "xpath": "//*[@id=\"company_web_top\"]/div[2]/div[2]/div[1]/h1/text()",
             "value": ""
@@ -16,8 +11,8 @@
             "value": ""
         },
         {
-            "title": "详细地址",
-            "xpath": "//*[@id=\"company_web_top\"]/div[2]/div[2]/div[5]/div[2]/div[2]/span[2]/@title",
+            "title": "法定代表",
+            "xpath": "//*[@id=\"_container_baseInfo\"]/table[1]/tbody/tr[1]/td[1]/div/div[1]/div[2]/div[1]/a/text()",
             "value": ""
         },
         {
@@ -25,11 +20,38 @@
             "xpath": "//*[@id=\"_container_baseInfo\"]/table[1]/tbody/tr[2]/td/div[2]/text/text()",
             "value": ""
         },
+        {    "title": "经营状态",            "xpath": "//*[@id=\"company_web_top\"]/div[2]/div[2]/div[2]/div/text()",            "value": ""        },
+        
+        {    "title": "电话",            "xpath": "//*[@id=\"company_web_top\"]/div[2]/div[2]/div[5]/div[1]/div[1]/span[2]/text()",            "value": ""        },
+        {    "title": "邮箱",            "xpath": "//*[@id=\"company_web_top\"]/div[2]/div[2]/div[5]/div[1]/div[2]/span[2]/text()",            "value": ""        },
+        {
+            "title": "详细地址",
+            "xpath": "//*[@id=\"company_web_top\"]/div[2]/div[2]/div[5]/div[2]/div[2]/span[2]/@title",
+            "value": ""
+        },
+        
         {
             "title": "统一社会信用代码",
             "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[2]/td[2]/text()",
             "value": ""
         },
+        {    "title": "纳税人识别码",   "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[3]/td[2]/text()",            "value": ""        },
+        {    "title": "注册号",        "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[1]/td[2]/text()",            "value": ""        },
+        {    "title": "组织机构代码",   "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[1]/td[4]/text()",            "value": ""        },
+        {    "title": "公司类型",      "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[2]/td[4]/text()",            "value": ""        },
+        {    "title": "所属行业",      "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[3]/td[4]/text()",            "value": ""        },
+        {    "title": "所属地区",      "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[6]/td[4]/text()",            "value": ""        },
+        {    "title": "成立时间",      "xpath": "//*[@id=\"_container_baseInfo\"]/table[1]/tbody/tr[2]/td/div[2]/text/text()",            "value": ""        },
+        {    "title": "曾用名",        "xpath": "//*[@id=\"company_web_top\"]/div[2]/div[2]/div[3]/div/div/text()",            "value": ""        },
+                                                
+        {    "title": "企业类型",      "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[2]/td[4]/text()",            "value": ""        },
+        {    "title": "股东",         "xpath": "//*[@id=\"_container_holder\"]/table/tbody/tr/td[2]/div/div[2]/a/text()",            "value": ""        },
+        {    "title": "历史股东",      "xpath": "",            "value": ""        },
+        {    "title": "补充电话",      "xpath": "",            "value": ""        },
+        {    "title": "备注",         "xpath": "",            "value": ""        },
+        
+
+
         {
             "title": "",
             "xpath": "",
