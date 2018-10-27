@@ -29,7 +29,7 @@ class Loginwindow(QWidget):
         self.searchIdx=0
         try:
             with open('result.csv','r',encoding='utf-8') as f:
-                self.searchIdx = len(f.readlines())
+                self.searchIdx = len(f.readlines())-1
                 print("lines:",self.searchIdx)  
         except:
             pass
@@ -39,13 +39,12 @@ class Loginwindow(QWidget):
         self.fw = open('result.csv','a',encoding='utf-8')    
         if self.searchIdx==0:
             self.fw.write('序号,公司名称,注册资金,法定代表人,成立时间,经营状态,电话,邮箱,详细地址,统一社会信用代码,纳税人识别号,注册号,组织机构代码,公司类型,所属行业,所属地区,成立时间,曾经用名,企业类型,股东,历史股东,补充电话,备注')
-            self.fw.write('\n')
+    #        self.fw.write('\n')
 
 
         self.setWindowTitle(f"{self.searchIdx}/{len(companyList)}")
 
     def setup(self):
-        self.timer = QTimer(self)
 
         self.box = QVBoxLayout(self)                      # 创建一个垂直布局来放控件
         self.btn_get = QPushButton('点击获取cookies')   # 创建一个按钮涌来了点击获取cookie
@@ -84,7 +83,8 @@ class Loginwindow(QWidget):
     def onDoSearch(self):
         self.setWindowTitle(f"{self.searchIdx}/{len(companyList)}")
         if self.searchIdx < len(companyList):
-            time.sleep(5)
+            
+            time.sleep(self.searchIdx%5+1)
             self.gotoSearch(companyList[self.searchIdx])
         else:
             print("searchOver")
@@ -96,7 +96,7 @@ class Loginwindow(QWidget):
         #print("anlyze_finish")
         #print(pResult)
         if pResult=='天眼查校验':
-            time.sleep(10)
+            time.sleep(20)
             self.onDoSearch()
             return
         
@@ -121,7 +121,7 @@ class MyWebEngineView(QWebEngineView):
         self.loadFinished.connect(self._loadFinished)
         self.Xmode=False
         self.searchMode = False
-    
+        self.date ='1900-0-0'
     
     def setFinishCallBack(self,pfun):
         self.FinishCallback = pfun
@@ -166,11 +166,12 @@ class MyWebEngineView(QWebEngineView):
             self.searchMode =False
             self.Xmode = False
             try:
-                self.loadX(pa.getSearchMode(data))
+                url,self.date = pa.getSearchMode(data)
+                self.loadX(url)
             except:
                 self.FinishCallback('')
         else:
-            self.FinishCallback(pa.getContent(data))
+            self.FinishCallback(pa.getContent(data,self.date))
 
 
 if __name__ == "__main__":

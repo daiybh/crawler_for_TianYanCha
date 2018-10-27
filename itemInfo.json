@@ -42,18 +42,18 @@
         {    "title": "所属行业",      "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[3]/td[4]/text()",            "value": ""        },
         {    "title": "所属地区",      "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[6]/td[4]/text()",            "value": ""        },
         {    "title": "成立时间",      "xpath": "//*[@id=\"_container_baseInfo\"]/table[1]/tbody/tr[2]/td/div[2]/text/text()",            "value": ""        },
-        {    "title": "曾用名",        "xpath": "//*[@id=\"company_web_top\"]/div[2]/div[2]/div[3]/div/div/text()",            "value": ""        },
+        {    "title": "曾用名",        "xpath": "//div[@class='history-content']",            "value": ""        },
                                                 
         {    "title": "企业类型",      "xpath": "//*[@id=\"_container_baseInfo\"]/table[2]/tbody/tr[2]/td[4]/text()",            "value": ""        },
-        {    "title": "股东",         "xpath": "//*[@id=\"_container_holder\"]/table/tbody/tr/td[2]/div/div[2]/a/text()",            "value": ""        },
-        {    "title": "历史股东",      "xpath": "",            "value": ""        },
+        {    "title": "股东",         "xpath": "//*[@id=\"_container_holder\"]/table/tbody/tr[*]/td[2]/div/div[2]/a/text()",            "value": ""        },
+        {    "title": "历史股东",      "xpath": "//*[@id=\"_container_pastHolderCount\"]/table/tbody/tr[*]/td[2]/div/a/text()",            "value": ""        },
         {    "title": "补充电话",      "xpath": "",            "value": ""        },
         {    "title": "备注",         "xpath": "",            "value": ""        },
         
 
 
         {
-            "title": "",
+            "title": "x时间x",
             "xpath": "",
             "value": ""
         }
