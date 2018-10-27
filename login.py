@@ -52,7 +52,8 @@ class Loginwindow(QWidget):
         self.web = MyWebEngineView()                      # 创建浏览器组件对象
         self.web.setFinishCallBack(self.anlyze_finish)
         self.web.resize(800, 600)                         # 设置大小
-        self.web.load(QUrl("https://www.tianyancha.com/login"))  # 打开百度页面来测试
+        #self.web.load(QUrl("https://www.tianyancha.com/login"))  # 打开百度页面来测试
+        self.web.load(QUrl("https://www.tianyancha.com/company/63662689"))
         #self.web.load(QUrl("http://www.baidu.com/"))  # 打开百度页面来测试
         #self.web.load(QUrl("https://www.tianyancha.com/search?key=成都市锦都工业建设投资有限公司"))
         self.box.addWidget(self.btn_get)                  # 将组件放到布局内，先在顶部放一个按钮
