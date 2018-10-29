@@ -4,17 +4,11 @@ import json
 import time
 import PyQt5.sip
 from PyQt5.QtCore import QUrl,QTimer
-from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile
+from PyQt5.QtWebEngineWidgets import  QWebEngineView, QWebEngineProfile
 from PyQt5.QtWidgets import QApplication,QListWidgetItem, QWidget, QVBoxLayout, QPushButton,QListWidget
 import pa
 
 companyList=[]
-with open('company.list','r',encoding='utf-8') as f:
-    while 1:
-        line = f.readline()
-        if not line:
-            break
-        companyList.append(line.strip().strip('\t\n'))
 #print(companyList)
 # 先来个窗口
 
@@ -37,7 +31,7 @@ class Loginwindow(QWidget):
         if self.searchIdx==0:
             xLine='序号,'
             for x in pa.xItemList:
-                print(x['title'])
+#                print(x['title'])
                 xLine += x['title']+','
             #xLine+='\n'
             self.fw.write(xLine)
@@ -77,7 +71,8 @@ class Loginwindow(QWidget):
 
     def get_cookie(self):
         #cookie = self.web.get_cookie()
-        #print('获取到cookie: ', cookie)       
+        #print('获取到cookie: ', cookie)   
+        #_input input_nor contactphone           
         with open('save.html','w',encoding='utf-8') as f:
             f.write(self.web.html)
         
@@ -188,6 +183,12 @@ class MyWebEngineView(QWebEngineView):
 
 
 if __name__ == "__main__":
+    with open('company.txt','r',encoding='utf-8') as f:
+        while 1:
+            line = f.readline()
+            if not line:
+                break
+            companyList.append(line.strip().strip('\t\n'))
     app = QApplication(sys.argv)
     w = Loginwindow()
     w.show()
