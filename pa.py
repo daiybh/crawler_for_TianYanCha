@@ -59,7 +59,7 @@ def getContent(text,date):
                     print(f"{a['title']} \t>>>\t {value}")
                 #result[a['title']]=a['value']
                 for x in value:
-                    result+=x+"_"
+                    result+=x+" "
                 #if len(value) >0:
                 #    result +=value[0] 
             except:

@@ -51,7 +51,7 @@
         {    "title": "备注",         "xpath": "",            "value": ""        },
         
 
-        {   "title": "实际控制人","xpath": "","value": ""},
+        {   "title": "实际控制权","xpath": "//*[@id=\"_container_companyholding\"]/table/tbody/tr[*]/td[2]/span/a","value": ""},
         {   "title": "主要人员","xpath": "//*[@id=\"_container_staff\"]/div/table/tbody/tr[*]/td[2]/div/a[1]/text()","value": ""},
 
         {   "title": "最终受益人","xpath": "//*[@id=\"_container_humanholding\"]/table/tbody/tr[*]/td[2]/span/a/text()","value": ""},

@@ -2,6 +2,7 @@
 import sys
 import json
 import time
+import PyQt5.sip
 from PyQt5.QtCore import QUrl,QTimer
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile
 from PyQt5.QtWidgets import QApplication,QListWidgetItem, QWidget, QVBoxLayout, QPushButton,QListWidget
@@ -34,8 +35,13 @@ class Loginwindow(QWidget):
 
         self.fw = open('result.csv','a',encoding='utf-8')    
         if self.searchIdx==0:
-            self.fw.write('序号,公司名称,注册资金,法定代表人,成立时间,经营状态,电话,邮箱,详细地址,统一社会信用代码,纳税人识别号,注册号,组织机构代码,公司类型,所属行业,所属地区,成立时间,曾经用名,企业类型,股东,历史股东,补充电话,备注')
-    #        self.fw.write('\n')
+            xLine='序号,'
+            for x in pa.xItemList:
+                print(x['title'])
+                xLine += x['title']+','
+            #xLine+='\n'
+            self.fw.write(xLine)
+            
 
 
         self.setWindowTitle(f"{self.searchIdx}/{len(companyList)}")
@@ -55,8 +61,8 @@ class Loginwindow(QWidget):
         self.web = MyWebEngineView()                      # 创建浏览器组件对象
         self.web.setFinishCallBack(self.anlyze_finish)
         self.web.resize(800, 600)                         # 设置大小
-        #self.web.load(QUrl("https://www.tianyancha.com/login"))  # 打开百度页面来测试
-        self.web.load(QUrl("https://www.tianyancha.com/company/63662689"))
+        self.web.load(QUrl("https://www.tianyancha.com/login"))  # 打开百度页面来测试
+        #self.web.load(QUrl("https://www.tianyancha.com/company/63662689"))
         #self.web.load(QUrl("http://www.baidu.com/"))  # 打开百度页面来测试
         #self.web.load(QUrl("https://www.tianyancha.com/search?key=成都市锦都工业建设投资有限公司"))
         self.box.addWidget(self.btn_get)                  # 将组件放到布局内，先在顶部放一个按钮
