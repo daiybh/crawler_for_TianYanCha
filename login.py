@@ -105,7 +105,7 @@ class Loginwindow(QWidget):
         if pResult=='天眼查校验':
             #time.sleep(20)
             #self.onDoSearch()
-            self.timer.start(2000) #设置计时间隔并启动
+            #self.timer.start(2000) #设置计时间隔并启动
             return
         
         self.fw.write("\n"+companyList[self.searchIdx]+",")
