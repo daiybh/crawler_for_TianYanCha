@@ -7,7 +7,8 @@ from PyQt5.QtCore import QUrl,QTimer
 from PyQt5.QtWebEngineWidgets import  QWebEngineView, QWebEngineProfile
 from PyQt5.QtWidgets import QApplication,QListWidgetItem, QWidget, QVBoxLayout, QPushButton,QListWidget
 import pa
-
+import trayIcon
+import Config
 companyList=[]
 #print(companyList)
 # 先来个窗口
@@ -16,8 +17,11 @@ class Loginwindow(QWidget):
     def __init__(self):
         super().__init__()
         self.setup() 
+        self.trayIcon = trayIcon.TrayIcon(self)
+        self.trayIcon.show()
         self.listResult=[]
         self.searchIdx=0
+        self.currentRunCount=0
         try:
             with open('result.csv','r',encoding='utf-8') as f:
                 self.searchIdx = len(f.readlines())-1
@@ -40,6 +44,8 @@ class Loginwindow(QWidget):
 
         self.setWindowTitle(f"{self.searchIdx}/{len(companyList)}")
 
+    def exit(self):
+        pass
     def setup(self):
 
         self.timer=QTimer(self)
@@ -88,10 +94,10 @@ class Loginwindow(QWidget):
         self.onDoSearch()
     
     def onDoSearch(self):
-        self.setWindowTitle(f"{self.searchIdx}/{len(companyList)}")
+        self.setWindowTitle(f"{self.searchIdx}/{len(companyList)}----{self.currentRunCount}")
         if self.searchIdx < len(companyList):
             
-            time.sleep(self.searchIdx%5+1)
+            #time.sleep(10) #self.searchIdx%5+1)
             self.gotoSearch(companyList[self.searchIdx])
         else:
             print("searchOver")
@@ -102,10 +108,14 @@ class Loginwindow(QWidget):
     def anlyze_finish(self,pResult):
         #print("anlyze_finish")
         #print(pResult)
+        
         if pResult=='天眼查校验':
             #time.sleep(20)
             #self.onDoSearch()
             #self.timer.start(2000) #设置计时间隔并启动
+            with open('count.txt','a+') as f:
+                f.write(str(self.searchIdx))
+            self.trayIcon.showMsage("天眼查校验 需要校验",20000)            
             return
         
         self.fw.write("\n"+companyList[self.searchIdx]+",")
@@ -116,7 +126,8 @@ class Loginwindow(QWidget):
             
         #self.listResult.append(pResult)
         self.searchIdx =self.searchIdx+1
-        self.onDoSearch()
+        self.currentRunCount+=1
+        self.timer.start(Config.timer)
 
 # 创建自己的浏览器控件，继承自QWebEngineView
 class MyWebEngineView(QWebEngineView):
@@ -130,6 +141,7 @@ class MyWebEngineView(QWebEngineView):
         self.Xmode=False
         self.searchMode = False
         self.date ='1900-0-0'
+        
     
     def setFinishCallBack(self,pfun):
         self.FinishCallback = pfun
@@ -189,6 +201,7 @@ if __name__ == "__main__":
             if not line:
                 break
             companyList.append(line.strip().strip('\t\n'))
+    print(Config.timer)
     app = QApplication(sys.argv)
     w = Loginwindow()
     w.show()

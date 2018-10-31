@@ -11,7 +11,7 @@ class App:
     # Create a Qt application
     self.app = QApplication(sys.argv)
     
-    icon = QIcon("jenkins_favicon.png")
+    icon = QIcon("favicon.ico")
     menu = QMenu()
     settingAction = menu.addAction("setting")
     settingAction.triggered.connect(self.setting)
