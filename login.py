@@ -31,7 +31,7 @@ class Loginwindow(QWidget):
         print("ccc",companyList[self.searchIdx])
         print("ccsss",self.searchIdx)
 
-        self.fw = open('result.csv','a',encoding='utf-8')    
+        self.fw = open('result.csv','a',encoding='utf_8_sig')    
         if self.searchIdx==0:
             xLine='序号,'
             for x in pa.xItemList:
